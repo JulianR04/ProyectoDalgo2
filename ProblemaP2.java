@@ -1,44 +1,57 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class ProblemaP2 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int numCasos = scanner.nextInt();
-        for (int caso = 0; caso < numCasos; caso++) {
-            int n = scanner.nextInt();
-            int w1 = scanner.nextInt();
-            int w2 = scanner.nextInt();
-            ArrayList<Tuple<Integer, String>> elementos = new ArrayList<>();
-            for (int i = 0; i < n; i++) {
-                int masa1 = scanner.nextInt();
-                String carga1 = scanner.next();
-                int masa2 = scanner.nextInt();
-                String carga2 = scanner.next();
-                elementos.add(new Tuple<>(masa1, carga1));
-                elementos.add(new Tuple<>(masa2, carga2));
-            }
+        try {
+            int numCasos = scanner.nextInt();
+            for (int caso = 0; caso < numCasos; caso++) {
+                try {
+                    int n = scanner.nextInt();
+                    int w1 = scanner.nextInt();
+                    int w2 = scanner.nextInt();
+                    ArrayList<Tuple<Integer, String>> elementos = new ArrayList<>();
+                    for (int i = 0; i < n; i++) {
+                        int masa1 = scanner.nextInt();
+                        String carga1 = scanner.next();
+                        int masa2 = scanner.nextInt();
+                        String carga2 = scanner.next();
+                        elementos.add(new Tuple<>(masa1, carga1));
+                        elementos.add(new Tuple<>(masa2, carga2));
+                    }
 
-            // Procesamiento
-            ArrayList<Tuple<ArrayList<Tuple<Integer, String>>, Integer>> compuestos = formarCompuestos(elementos, w1, w2);
+                    // Procesamiento
+                    ArrayList<Tuple<ArrayList<Tuple<Integer, String>>, Integer>> compuestos = formarCompuestos(elementos, w1, w2);
 
-            // Salida de resultados
-            if (!compuestos.isEmpty()) {
-                Tuple<ArrayList<Tuple<Integer, String>>, Integer> compuestoMinimo = Collections.min(compuestos, new MyComparator());
-                StringBuilder sb = new StringBuilder();
-                for (Tuple<Integer, String> atom : compuestoMinimo.first) {
-                    sb.append("(").append(atom.first).append(" ").append(atom.second).append(") ");
+                    // Salida de resultados
+                    if (!compuestos.isEmpty()) {
+                        Tuple<ArrayList<Tuple<Integer, String>>, Integer> compuestoMinimo = Collections.min(compuestos, new MyComparator());
+                        StringBuilder sb = new StringBuilder();
+                        for (Tuple<Integer, String> atom : compuestoMinimo.first) {
+                            if (atom.second.equals("0")) {
+                                sb.append(atom.first);
+                            } else {
+                                sb.append("(").append(atom.first).append(",").append(atom.second).append(")");
+                            }
+                        }
+                        sb.append(" ").append(compuestoMinimo.second);
+                        System.out.println(sb.toString());
+                    } else {
+                        System.out.println("NO SE PUEDE");
+                    }
+                } catch (NoSuchElementException e) {
+                    System.out.println("NO SE PUEDE");
                 }
-                sb.append(compuestoMinimo.second);
-                System.out.println(sb.toString());
-            } else {
-                System.out.println("NO SE PUEDE");
             }
+        } finally {
+            scanner.close();
         }
-        scanner.close();
     }
+
 
     static class Tuple<X, Y> {
         public final X first;
