@@ -1,20 +1,3 @@
---------------------------------------------------
-Especificación del problema de ejemplo (ProblemaP0)
---------------------------------------------------
-
-El Problema P0 es un problema de juguete que pretende explicar cómo se espera que se presenten soluciones al proyecto.
-La idea es mostrar con un problema sencillo:
-- cómo se espera que se lean los datos
-- cómo se espera que se escriban las respuestas
-
-Problema P0:
-Entrada: La primera linea contiene la cantidad de casos de prueba. Cada linea subsiguiente del archivo contiene una lista de n números enteros, 0<n<=1000 separados por espacio.
-Salida : Por cada linea del archivo de entrada se espera una línea de la forma
-cp sp
-donde cp es el conteo de enteros pares leídos y sp es la suma de los números pares leídos.
-
-Como en los problemas del proyecto, se esperan varios casos de prueba. El número de casos de prueba aparece en la primera linea del archivo
-
 --------------------------------------
 Instrucciones para compilar y ejecutar
 --------------------------------------
@@ -29,11 +12,11 @@ cd C:\Usuarios\jorge\carpeta1\carpeta2\...\
 
 3. Ejecutar el comando javac para compilar:
 
-javac ProblemaP0.java
+javac ProblemaP2.java
 
 4. Ejecutar el programa:
 
-java ProblemaP0
+java ProblemaP2
 
 El programa va a quedarse esperando primero la cantidad de casos de prueba y luego una lista de números de acuerdo con la especificación del problema.
 Cada vez que se provea una lista y se presione enter, debe aparecer la respuesta al problema en el formato esperado.
@@ -42,42 +25,7 @@ Para pruebas grandes es más cómodo leer un archivo y escribir las respuestas
 en un archivo. Para esto se puede crear un archivo de texto con todos los casos
 de prueba (por ejemplo P0.in) y usar la consola de la siguiente forma:
 
-java ProblemaP0 < P0.in > P0.out
+java ProblemaP2 < P0.in > P0.out
 
 El símbolo "<" redirige el contenido de "P0.in" a la entrada estandar.
 El símbolo ">" redirige la salida estandar al archivo "P0.out"
-
-En python el funcionamiento de la consola es igual. Simplemente se hace referencia al archivo ProblemaP0.py en lugar de hacer referencia al archivo en java
-
-python ProblemaP0.py < P0.in > P0.out
-
----------------------
-Trabajando en Eclipse
----------------------
-
-Para usar los archivos compilados por eclipse, se debe ir a la carpeta donde
-están los archivos .class:
-
-cd C:\Usuarios\jorge\carpeta1\carpeta2\...\ProyectoDAlgo\bin
-
-y ejecutar directamente el programa. También se puede ejecutar java desde cualquier
-parte del sistema de archivos utilizando la opción "-cp" para indicar donde están los archivos .class
-
-java -cp "C:\Usuarios\jorge\carpeta1\carpeta2\...\ProyectoDAlgo\bin" ProblemaP0
-
-Finalmente, utilizando rutas a los archivos se puede ejecutar el programa desde cualquier directorio:
-
-java -cp "C:\Usuarios\jorge\carpeta1\carpeta2\...\ProyectoDAlgo\bin" ProblemaP0 < C:\Usuarios\jorge\carpeta3\carpeta4\...\carpetaN\P0.in > C:\Usuarios\jorge\carpeta10\carpeta11\...\carpetaM\P0.out
-
---------------------------------------------------
-Instrucciones para hacer debug desde VSCode
---------------------------------------------------
-Seleccionar cmd.exe como el terminal por defecto
-Ctrl + Shift + p
-Terminal: Select Default Profile
-Command Prompt
-https://stackoverflow.com/questions/42729130/visual-studio-code-how-to-switch-from-powershell-exe-to-cmd-exe
-
-En run y debug (menu izquierdo de visual code)
-Ejecutar run and debug
-"java Problem P0" o "Python Problem P0"
