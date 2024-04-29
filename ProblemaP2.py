@@ -296,18 +296,16 @@ class Caso:
         else:
 
             camino_euleriano = self.grafo.encontrar_camino_euleriano(source_eulerian, self.num_elementos_fund, grafo_euleriano)
-            print(f"El camino euleriano es {camino_euleriano}")
 
             self.grafo, self.vertices_libres = self.grafo_vertices_libres(self.grafo)
                         
             self.grafo_completo = self.crear_grafo_completo(self.grafo)
             self.matriz_grafo, self.diccionario_indices = self.grafo_completo.crear_matriz_ady()  
             caminos_fundamentales, costo = self.grafo_completo.dijkstra_para_fundamentales_repetidos()
-            print(costo,)
+            
             camino_final = self.grafo_completo.generar_camino_conectado(camino_euleriano, caminos_fundamentales)
             resultado_final = self.grafo_completo.formatear_camino_final( camino_final, costo)
             self.escribir_resultado(resultado_final, output_file)
-            print(f"Camino final para el caso {self.case_id}: {camino_final}")
             
             
     def calcular_costo(self, vertice1, vertice2):
@@ -333,7 +331,6 @@ class Caso:
             vertices_fundamentales.append(origen)
             vertices_fundamentales.append(destino)
                     
-            # Costo infinito
             costo =  sys.maxsize
             conexion = Conexion(origen, destino,costo)
             grafo.add_conexion(conexion)
@@ -399,17 +396,14 @@ class Caso:
     def escribir_camino_minimo(self, distancias, output_file):
         with open(output_file, 'a') as f:
             f.write(f"Case {self.case_id}: {distancias}\n")
-        print(f"Se escribio en el archivo P2.out para el caso {self.case_id}")
         
     
     def escribir_resultado(self, result, output_file):
         with open(output_file, 'a') as f:
             f.write(f"Case {self.case_id}: {result}\n")
 
-        print (f"Se escribio en el archivo P2.out para el caso {self.case_id}")
         
 def respuesta_dijkstra(grafo, distancias, caminos):
-    print("Distancias más cortas desde el nodo de inicio:")
     for i, distancia in enumerate(distancias):
         if i < len(grafo.vertices):
             vertice_info = (f"Nodo {i} (masa={grafo.vertices[i].masa}, "
@@ -419,12 +413,10 @@ def respuesta_dijkstra(grafo, distancias, caminos):
             vertice_info = f"Nodo {i}: {distancia}"
         print(vertice_info)
 
-    print("\nCaminos mínimos desde el nodo de inicio:")
     for i, camino in enumerate(caminos):
         camino_descripcion = [f"nodo {j} (masa={grafo.vertices[j].masa}, "
                               f"carga={grafo.vertices[j].carga}, "
                               f"tipo={grafo.vertices[j].tipo})" for j in camino + [i]]
-        print(f"Nodo {i}: " + " -> ".join(camino_descripcion))
 
 
     
@@ -436,10 +428,10 @@ def resolver_casos( input_file, output_file):
     with open(output_file, 'w') as f:
         f.write("")
         
-    lineas = data.strip().split("\n") # divide todas las lineas si hay un enter
+    lineas = data.strip().split("\n") 
     index = 0
-    cant_casos = int(lineas[index]) #saca la cantidad de casos
-    index += 1 #empieza a contar a partir de la segunda linea
+    cant_casos = int(lineas[index]) 
+    index += 1 
     
     case_count = 0
     for _ in range(cant_casos):
@@ -449,11 +441,10 @@ def resolver_casos( input_file, output_file):
         index += n
         caso_actual = Caso(case_count, n, w1, w2, case, output_file)
         case_count += 1
-         # Esto toca quitarlo ,es solo para mirar solo el primer caso jeje
+    
 
         
 if __name__ == "__main__":
-    start_time = time.time()  # Start timing
 
 
     if len(sys.argv) != 3:
