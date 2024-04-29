@@ -3,6 +3,10 @@ import sys
 import time
 import heapq
 
+
+## Para poder ejecutar el codigo usar el comando python ProblemP2.py P0.in P0.out sin necesidad de los <>
+
+
 class Vertice:
     def __init__(self, masa, carga):
         self.masa = masa
